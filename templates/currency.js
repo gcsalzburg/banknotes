@@ -1,6 +1,7 @@
 var currency_template= '{{#currencies}} \
     <div class="currency" id="{{code}}" data-exchange-rate="{{exchange-rate}}"> \
-        <h3>{{code}}</h3> \
+        <h2>{{code}}</h2> \
+        <h3>{{name}}</h3> \
         <ul class="notes"> \
         {{#notes}} \
             {{#.}} \
