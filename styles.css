@@ -1,0 +1,70 @@
+.currency{
+    font-family: 'PT Sans', sans-serif;
+    margin-bottom:10px;
+    height:100px;
+}
+.currency h3{
+    font-family: 'PT Serif', serif;
+    font-weight: 600;
+    display: block;
+    height: 100px;
+    line-height: 100px;
+    width: 100px;
+    text-align: center;
+    background: #eee;
+    float: left;
+    clear: both;
+    margin: 0;
+    padding: 0;
+}
+.currency .notes{
+    list-style: none;
+    height: 100px;
+    width: 600px;
+    float: left;
+    margin: 0;
+    padding: 0;
+    position:relative;
+    margin-left:10px;
+}
+.currency .notes:before{
+    content:"";
+    background-color:#333;
+    position: absolute;
+    height: 1px;
+    width: 600px;
+    top: 50%;
+    left: 0;
+}
+.currency li{
+    background-color: #555;
+    color: #fff;
+    display: block;
+    font-size: 13px;
+    position: absolute;
+    height: 20px;
+    line-height: 20px;
+    padding: 0 5px;
+    transform: rotate(-90deg);
+    transform-origin: -15px center;
+    top: 40px;
+    margin-left:15px;
+}
+.currency li:before{
+    content:"";
+    display:block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 10px 15px 10px 0;
+    border-color: transparent #555 transparent transparent;
+    position: absolute;
+    left: -15px;
+}
+.currency li:hover{
+    background-color:#111;
+    cursor:pointer;
+}
+.currency li:hover:before{
+    border-color: transparent #111 transparent transparent;
+}

@@ -1,0 +1,32 @@
+{
+    "currencies": [
+        {
+            "name":             "Euro",
+            "code":             "EUR",                      
+            "symbol":           "€",
+            "exchange-rate":    "1",    
+            "notes":            [5,10,20,50,100,200,500]    
+        },
+        {
+            "name":             "GB Pound",
+            "code":             "GBP",
+            "symbol":           "£",
+            "exchange-rate":    "1",    
+            "notes":            [5,10,20,50]    
+        },
+        {
+            "name":             "US Dollar",
+            "code":             "USD",
+            "symbol":           "$",
+            "exchange-rate":    "1",    
+            "notes":            [1,2,5,10,20,50,100,500,1000,5000,10000]    
+        },
+        {
+            "name":             "Uzbek Som",
+            "code":             "UZS",
+            "symbol":           "so'm",
+            "exchange-rate":    "1",    
+            "notes":            [50,100,200,500,1000,5000,10000,50000]    
+        }
+    ]
+}
