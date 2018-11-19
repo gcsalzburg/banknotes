@@ -63,6 +63,8 @@
     transform-origin: -15px center;
     top: 40px;
     margin-left:15px;
+    left:0;
+    transition: left 300ms ease-in;
 }
 .currency li:before{
     content:"";
@@ -81,4 +83,22 @@
 }
 .currency li:hover:before{
     border-color: transparent #111 transparent transparent;
+}
+
+.zoom_button{
+    font-family: 'PT Sans', sans-serif;
+    display: inline-block;
+    background: greenyellow;
+    width: 30px;
+    height: 30px;
+    text-decoration: none;
+    color: #000;
+    text-align: center;
+    line-height: 30px;
+    font-size: 24px;
+    border-radius: 50%;
+}
+.zoom_button:hover{
+    background:green;
+    color:#fff;
 }
