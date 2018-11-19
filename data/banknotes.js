@@ -20,6 +20,13 @@ var banknotes = {
             "symbol":           "$",
             "exchange-rate":    "0.873",    
             "notes":            [1,2,5,10,20,50,100]    
+        },
+        {
+            "name":             "indian_rupee",
+            "code":             "INR",
+            "symbol":           "$",
+            "exchange-rate":    "0.873",    
+            "notes":            [1,2,5,10,20,50,100]    
         }
     ]
 };
