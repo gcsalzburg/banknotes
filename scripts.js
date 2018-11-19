@@ -14,7 +14,7 @@ $(function(){
     update_positions();
 
     // Now get latest exchange rate data from Fixer.io API
-    var fixer_api_url = "http://data.fixer.io/api/latest?access_key="+fixer_api_key+"&base=EUR&symbols=GBP,USD,INR,AUD&format=1";
+    var fixer_api_url = "http://data.fixer.io/api/latest?access_key="+fixer_api_key+"&base=EUR&symbols=GBP,USD,INR,AUD,UZS&format=1";
     $.getJSON(fixer_api_url,function(data){
         $.each(data.rates,function(k,v){
             var vv = 1/v;

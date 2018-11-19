@@ -34,6 +34,13 @@ var banknotes = {
             "symbol":           "AU$",
             "exchange-rate":    "0.636",    
             "notes":            [5,10,20,50,100]    
+        },
+        {
+            "name":             "Uzbek so'm",
+            "code":             "UZS",
+            "symbol":           "UZ SOM",
+            "exchange-rate":    "0.000105",    
+            "notes":            [200,500,1000,5000,10000,50000]    
         }
     ]
 };
