@@ -13,12 +13,18 @@ $(function(){
     calculate_exchange_rates();
     update_positions();
 
+    
+    // Build array of currency codes to send to Fixer IO
+    var curr_codes = [];
+    $.each(banknotes.currencies, function(i,elem){
+        curr_codes.push(elem.code);
+    });
+
     // Now get latest exchange rate data from Fixer.io API
-    var fixer_api_url = "http://data.fixer.io/api/latest?access_key="+fixer_api_key+"&base=EUR&symbols=GBP,USD,INR,AUD,UZS&format=1";
+    var fixer_api_url = "http://data.fixer.io/api/latest?access_key="+fixer_api_key+"&base=EUR&symbols="+curr_codes.join(",")+"&format=1";
     $.getJSON(fixer_api_url,function(data){
         $.each(data.rates,function(k,v){
-            var vv = 1/v;
-            $("#"+k).data("exchange-rate",vv);
+            $("#"+k).data("exchange-rate",1/v); // inverse to get 1 whatever in EUROs
         });
 
         // Update positions based on new information
@@ -26,15 +32,21 @@ $(function(){
         update_positions();
     });
 
+    // Handlers for zoom in/out buttons
     $(".zoom_button").on("click",function(e){
         e.preventDefault();
-        zoom = zoom * $(this).data("increment");
-        if(zoom < 1){
-            zoom = 1;
-        }
-        update_positions();
+        set_zoom($(this).data("increment"));
     });
 });
+
+// Zoom handler
+function set_zoom(multiplier){
+    zoom = zoom * multiplier;
+    if(zoom < 1){
+        zoom = 1;
+    }
+    update_positions();
+}
 
 // Set exchange rates for each note
 function calculate_exchange_rates(){
