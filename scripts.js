@@ -2,12 +2,22 @@
 var max = 0;
 var min = 99999999999;
 
+var MIN_ZOOM = 1;
+var MAX_ZOOM = 10000;
+
 var zoom = 1;
 var scroll_offset = 0;
 
 $(function(){
     var container = $("#currencies");
     container.append(Mustache.render(currency_template,banknotes));
+
+    // Add scroll zoom handling
+    document.getElementById("currencies").addEventListener("wheel", MouseWheelHandler, false);
+    function MouseWheelHandler(e){
+        set_zoom(Math.sign(e.deltaY)*-1);
+        return false;
+    }
 
     // Initial positioning
     calculate_exchange_rates();
@@ -39,11 +49,20 @@ $(function(){
     });
 });
 
+
 // Zoom handler
-function set_zoom(multiplier){
+function set_zoom(direction){
+    var multiplier = 1;
+    if(direction > 0){
+        multiplier = 1.5; 
+    }else if(direction < 0){
+        multiplier = 0.6667;
+    }
     zoom = zoom * multiplier;
-    if(zoom < 1){
-        zoom = 1;
+    if(zoom < MIN_ZOOM){
+        zoom = MIN_ZOOM;
+    }else if(zoom > MAX_ZOOM){
+        zoom = MAX_ZOOM;
     }
     update_positions();
 }
