@@ -2,19 +2,19 @@
     font-family: 'PT Sans', sans-serif;
     margin-bottom:10px;
     height:100px;
+    display: flex;
+    align-items: stretch;
+    overflow:hidden;
     position:relative;
 }
 .currency h2{
     font-family: 'PT Serif', serif;
     font-weight: 600;
-    display: block;
     height: 100px;
     line-height: 100px;
-    width: 100px;
+    flex: 0 0 100px;
     text-align: center;
     background: #eee;
-    float: left;
-    clear: both;
     margin: 0;
     padding: 0;
     border-radius:20px;
@@ -34,19 +34,17 @@
 .currency .notes{
     list-style: none;
     height: 100px;
-    width: 600px;
-    float: left;
-    margin: 0;
     padding: 0;
     position:relative;
-    margin-left:10px;
+    margin: 0 10px;
+    flex-grow: 1;
 }
 .currency .notes:before{
     content:"";
     background-color:#333;
     position: absolute;
     height: 1px;
-    width: 600px;
+    width: 100%;
     top: 50%;
     left: 0;
 }
