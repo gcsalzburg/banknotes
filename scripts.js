@@ -4,6 +4,7 @@ var min = 99999999999;
 
 var MIN_ZOOM = 1;
 var MAX_ZOOM = 10000;
+var ZOOM_RATE = 1.2;
 
 var zoom = 1;
 var scroll_offset = 0;
@@ -13,11 +14,15 @@ $(function(){
     container.append(Mustache.render(currency_template,banknotes));
 
     // Add scroll zoom handling
-    document.getElementById("currencies").addEventListener("wheel", MouseWheelHandler, false);
-    function MouseWheelHandler(e){
+    document.getElementById("currencies").addEventListener("wheel",function(e){
         set_zoom(Math.sign(e.deltaY)*-1);
         return false;
-    }
+    }, false);
+
+    // Add handler for mouse movement
+    $(".notes").on("mousemove",function(e){
+        set_scrolloffset((e.pageX - $(this).offset().left)/$(this).width()); // should cache these!
+    });
 
     // Initial positioning
     calculate_exchange_rates();
@@ -54,9 +59,9 @@ $(function(){
 function set_zoom(direction){
     var multiplier = 1;
     if(direction > 0){
-        multiplier = 1.5; 
+        multiplier = ZOOM_RATE; 
     }else if(direction < 0){
-        multiplier = 0.6667;
+        multiplier = 1/ZOOM_RATE;
     }
     zoom = zoom * multiplier;
     if(zoom < MIN_ZOOM){
@@ -64,6 +69,12 @@ function set_zoom(direction){
     }else if(zoom > MAX_ZOOM){
         zoom = MAX_ZOOM;
     }
+    update_positions();
+}
+
+// Scroll offset handler
+function set_scrolloffset(percentage){
+    scroll_offset = percentage;
     update_positions();
 }
 
@@ -86,7 +97,10 @@ function calculate_exchange_rates(){
 function update_positions(){
     $(".banknote").each(function(){
         var euro_val = $(this).data("euro-value");
-        var pos = ((euro_val - min) / (max-min))*zoom;
+        var pos = ((euro_val - min) / (max-min));   // calculate raw percentage
+        pos = pos*zoom;                             // multiple by zoom
+        pos = pos + (scroll_offset * (1-zoom));     // shift position based upon mouse location
+        
         $(this).css("left",(pos*100)+"%");
     });
 }

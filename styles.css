@@ -62,7 +62,7 @@
     top: 40px;
     margin-left:15px;
     left:0;
-    transition: left 300ms ease-in;
+/*    transition: left 300ms ease-in; */
     opacity:0.8;
 }
 .currency li:before{
